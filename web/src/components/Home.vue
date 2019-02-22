@@ -2,13 +2,11 @@
   <div>
     <form novalidate class="md-layout md-gutter" @submit.prevent="validateForm">
       <md-card class="md-layout-item md-size-40 md-small-size-100">
-        <md-progress-bar md-mode="indeterminate" v-if="showProgress" />
+        <md-progress-bar md-mode="indeterminate" v-if="showProgress"/>
         <md-card-header>
-          <div class="md-title">LDAP Account info
-            <span class="md-gray">[created]</span>
-          </div>
+          <div class="md-title">Welcome to VTEX Wi-Fi</div>
         </md-card-header>
-        <md-card-content>
+        <md-field>
           <md-field>
             <label>Username</label>
             <md-input v-model="accountData.username" disabled></md-input>
@@ -19,30 +17,31 @@
             <md-input v-model="accountData.name" disabled></md-input>
           </md-field>
 
-          <md-list class="md-dense">
-            <md-subheader>Emails</md-subheader>
-            <md-list-item v-for="email in accountData.emails" :key="email" disabled>
-              <md-icon>email</md-icon>
-              <span class="md-list-item-text">{{ email }}</span>
-            </md-list-item>
-          </md-list>
-
           <md-field :class="{'md-invalid': errors.has('password')}" md-has-password>
-            <label for="password">Type LDAP Password</label>
-            <md-input v-model="formData.password" name="password" type="password" v-validate="'required|min:8|password'" required/>
+            <label for="password">Type your wi-fi password</label>
+            <md-input
+              v-model="formData.password"
+              name="password"
+              type="password"
+              v-validate="'required|min:8|password'"
+              required
+            />
             <span class="md-error">{{errors.first('password')}}</span>
           </md-field>
 
           <md-field :class="{'md-invalid': errors.has('password-confirm')}">
-            <label>Confirm LDAP Password</label>
-            <md-input v-model="formData.confirmPassword" name="password-confirm" type="password" v-validate="'required|confirmed:password'" required/>
+            <label>Confirm your wi-fi password</label>
+            <md-input
+              v-model="formData.confirmPassword"
+              name="password-confirm"
+              type="password"
+              v-validate="'required|confirmed:password'"
+              required
+            />
             <span class="md-error">{{errors.first('password-confirm')}}</span>
           </md-field>
-
-          <md-switch class="md-primary" v-if="showSaveGSuitePasswordCheckbox()" v-model="formData.saveGSuitePassword">Synchronize GSuite Password</md-switch>
-          <br/>
-          <md-button type="submit" class="md-raised md-primary">Update LDAP Password</md-button>
-        </md-card-content>
+          <md-button type="submit" class="md-raised md-primary">Create VTEX Wi-Fi Account</md-button>
+        </md-field>
       </md-card>
     </form>
   </div>
@@ -79,9 +78,9 @@ export default {
             else {
               _this.$router.push('/');
               _this.accountData = {
-                username: 'george@xit.camp',
-                name: 'George Soros',
-                emails: ['george.soros@xit.camp', 'georgo@xit.camp'],
+                username: 'alan.turing@vtex.com.br',
+                name: 'Alan Turing',
+                emails: ['alan.turing@vtex.com.br', 'alan.turing@vtex.com'],
                 role: 'INTERNAL'
               };
             }
@@ -90,7 +89,9 @@ export default {
           } else {
             _this.notifyError({ message: error.response.data });
           }
-          console.error('LDAP Account not found: ' + error.response.status);
+          console.error(
+            'VTEX Wi-Fi Account not found: ' + error.response.status
+          );
         });
     },
     showSaveGSuitePasswordCheckbox() {
@@ -195,5 +196,10 @@ export default {
 .md-gray {
   color: gray;
   font-size: 70%;
+}
+
+.md-primary {
+  background-color: #f71963 !important;
+  background-color: var(--md-theme-default-primary, #f71963);
 }
 </style>
