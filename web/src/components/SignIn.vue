@@ -1,7 +1,9 @@
 <template>
   <div class="hello">
     <div class="main-content">
-      <md-button class="md-raised md-primary" v-on:click.native="signIn"><img class="google-logo" src="../assets/google.png">Sign In</md-button>
+      <md-button class="md-raised md-primary" v-on:click.native="signIn">
+        <img class="google-logo" src="../assets/google.png">Create Wi-Fi Account
+      </md-button>
     </div>
   </div>
 </template>
@@ -10,11 +12,11 @@
 export default {
   name: 'SignIn',
   methods: {
-    signIn: function (event) {
-      location.href = this.$apiPrefix + '/oidc/rp'
+    signIn: function(event) {
+      location.href = this.$apiPrefix + '/oidc/rp';
     }
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

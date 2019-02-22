@@ -72,7 +72,7 @@ export default {
   name: 'app',
   data: () => ({
     menuVisible: false,
-    titleMsg: 'Welcome to VTEX Wi-Fi! Sign below with your @vtex.com.br'
+    titleMsg: 'Welcome to VTEX Wi-Fi!'
   }),
   methods: {
     open() {
